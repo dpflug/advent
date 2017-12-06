@@ -1,8 +1,21 @@
+; Sum digits that match their trailing digit
+; Last digit matches with first
 (de sum-matching-next (s)
     (let (l (mapcar format (chop s)))
       (sum '((el next)
              (if (= el next)
                  el
                0))
-           (format l)
-           (reverse (cons (car l) (reverse (cdr l)))))))
+           (copy l)
+           (rot l))))
+
+; Sum digits that match the digit halfway "around" the list from them
+(de sum-half-around (s)
+    (let (l (mapcar format (chop s)))
+         (sum '((el half)
+                (if (= el half)
+                    el
+                  0))
+              (copy l)
+              (do (/ (len l) 2)
+                  (rot l)))))
