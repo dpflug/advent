@@ -17,5 +17,18 @@
                     el
                   0))
               (copy l)
-              (do (/ (len l) 2)
+              (do (/ (length l) 2)
                   (rot l)))))
+
+; Why doesn't this work?
+(de advent1 (s part1)
+    (let (l (mapcar format (chop s)))
+      (sum '((el match)
+             (if (= el match)
+                 el
+               0))
+           (copy l)
+           (if part1
+               (rot l)
+             (do (/ (length l) 2)
+                 (rot l))))))
