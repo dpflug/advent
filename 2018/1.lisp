@@ -1,0 +1,20 @@
+(let ((in (open "1-data.txt" :if-does-not-exist nil))
+      (frequency 0))
+  (when in
+    (loop for line = (read-line in nil)
+          while line do (setf frequency (+ frequency (parse-integer line)))))
+  (princ frequency))
+
+;; Part two: Find the first frequency you reach twice
+(let ((in (open "1-data.txt" :if-does-not-exist nil))
+      (frequency 0)
+      (frequency-map (make-hash-table)))
+  (loop for line = (read-line in nil)
+        do (when (null line)
+             (progn (file-position in 0)
+                    (setf line (read-line in nil))))
+           (setf frequency (+ frequency (parse-integer line)))
+           (if (gethash frequency frequency-map)
+               (progn (princ frequency)
+                      (return frequency))
+               (setf (gethash frequency frequency-map) t))))

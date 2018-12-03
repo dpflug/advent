@@ -1,0 +1,8 @@
+*_data.txt
+
+# Editor errata
+.#*
+*.swp
+*.swo
+*~
+\#*\#
