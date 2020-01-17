@@ -14,7 +14,6 @@ int main() {
   int nicecount = 0;
 
   while (fgets(buffer, BUFSIZE, stream)) {
-    printf("%s", buffer);
     naughty_string = 0;
     homobigram = 0;
     vowels = 0;
@@ -37,5 +36,6 @@ int main() {
     }
   }
 
+  free(stream);
   printf("%i\n", nicecount);
 }
