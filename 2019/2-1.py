@@ -1,47 +1,35 @@
 from collections import defaultdict
 
-number_string = ""
+NUMBER_STRING = ""
 with open("2.txt") as f:
-    number_string = f.readline()
+    NUMBER_STRING = f.readline()
 
-tape = [int(x) for x in number_string.split(",")]
-pointer = 0
+TAPE = [int(x) for x in NUMBER_STRING.split(",")]
+POINTER = 0
 
 
 def add(n1p, n2p, destp):
-    tape[destp] = tape[n1p] + tape[n2p]
+    TAPE[destp] = TAPE[n1p] + TAPE[n2p]
 
 
 def mult(n1p, n2p, destp):
-    print("Updating %s" % destp)
-    tape[destp] = tape[n1p] * tape[n2p]
-    print(tape)
+    TAPE[destp] = TAPE[n1p] * TAPE[n2p]
 
 
-opmap = defaultdict(lambda: False)
-opmap[1] = add
-opmap[2] = mult
+OPMAP = defaultdict(lambda: False)
+OPMAP[1] = add
+OPMAP[2] = mult
 
 # Restore computer to state before 1202 error
-tape[1] = 12
-tape[2] = 2
+TAPE[1] = 12
+TAPE[2] = 2
 
-while (op := tape[pointer]) != 99:
-    print(
-        tape[:pointer],
-        "*",
-        tape[pointer],
-        "*",
-        "(",
-        tape[pointer + 1 : pointer + 4],
-        ")",
-        tape[pointer + 4 :],
-    )
-    print("======")
-    action = opmap[op]
-    if not action:
-        raise RuntimeError("Operation not found: %s: %s" % (pointer, op))
-    action(tape[pointer + 1], tape[pointer + 2], tape[pointer + 3])
-    pointer += 4
+while (op := TAPE[POINTER]) != 99:
+    ACTION = OPMAP[op]
+    if not ACTION:
+        raise RuntimeError("Operation not found: %s: %s" % (POINTER, op))
+    ACTION(TAPE[POINTER + 1], TAPE[POINTER + 2], TAPE[POINTER + 3])
+    POINTER += 4
 
-print(tape)
+print("Advent of Code 2019: 2-1")
+print(TAPE)

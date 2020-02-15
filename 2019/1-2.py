@@ -18,15 +18,17 @@ def memoize(obj):
 @memoize
 def fuel(n, acc):
     new = math.floor(n / 3) - 2
+
     if new <= 0:
         return acc
-    else:
-        return fuel(new, acc + new)
+
+    return fuel(new, acc + new)
 
 
 with open("1.txt") as f:
-    sum = 0
+    SUM = 0
     for l in f:
-        sum += fuel(int(l), 0)
+        SUM += fuel(int(l), 0)
 
-print(sum)
+print("Advent of Code 2019: 1-2")
+print(SUM)

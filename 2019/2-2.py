@@ -1,35 +1,37 @@
 from collections import defaultdict
 from itertools import product
 
-number_string = ""
+NUMBER_STRING = ""
 with open("2.txt") as f:
-    number_string = f.readline()
+    NUMBER_STRING = f.readline()
 
 
 def add(n1p, n2p, destp):
-    tape[destp] = tape[n1p] + tape[n2p]
+    TAPE[destp] = TAPE[n1p] + TAPE[n2p]
 
 
 def mult(n1p, n2p, destp):
-    tape[destp] = tape[n1p] * tape[n2p]
+    TAPE[destp] = TAPE[n1p] * TAPE[n2p]
 
-opmap = defaultdict(lambda: False)
-opmap[1] = add
-opmap[2] = mult
+
+OPMAP = defaultdict(lambda: False)
+OPMAP[1] = add
+OPMAP[2] = mult
 
 
 for in1, in2 in product(range(100), repeat=2):
     pointer = 0
-    tape = [int(x) for x in number_string.split(",")]
-    tape[1] = in1
-    tape[2] = in2
+    TAPE = [int(x) for x in NUMBER_STRING.split(",")]
+    TAPE[1] = in1
+    TAPE[2] = in2
 
-    while (op := tape[pointer]) != 99:
-        action = opmap[op]
-        if not action:
+    while (op := TAPE[pointer]) != 99:
+        ACTION = OPMAP[op]
+        if not ACTION:
             raise RuntimeError("Operation not found: %s: %s" % (pointer, op))
-        action(tape[pointer + 1], tape[pointer + 2], tape[pointer + 3])
+        ACTION(TAPE[pointer + 1], TAPE[pointer + 2], TAPE[pointer + 3])
         pointer += 4
 
-    if tape[0] == 19690720:
+    if TAPE[0] == 19690720:
+        print("Advent of Code 2019: 2-2")
         print(in1, in2)

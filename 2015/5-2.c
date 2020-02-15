@@ -4,6 +4,8 @@
 
 #define BUFSIZE 18
 
+typedef unsigned int uint;
+
 int main() {
   static char buffer[BUFSIZE];
   char overmatch;

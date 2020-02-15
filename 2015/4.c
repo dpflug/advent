@@ -5,7 +5,6 @@
 #include <limits.h>
 
 const char* string = "bgvyzdsv";
-const char* zeros = "00000";
 
 int main() {
     unsigned char digest[MD5_DIGEST_LENGTH];
@@ -14,7 +13,7 @@ int main() {
 
     do {
         ++i;
-        sprintf(md5str, "%s%i", string, i);
+        snprintf(md5str, 20, "%s%i", string, i);
         MD5((unsigned char*)md5str, strlen(md5str), digest);
     } while (digest[0] != 0 || digest[1] != 0 || digest[2] > 15);
 
@@ -22,7 +21,7 @@ int main() {
 
     do {
       ++i;
-        sprintf(md5str, "%s%i", string, i);
+        snprintf(md5str, 20, "%s%i", string, i);
         MD5((unsigned char*)md5str, strlen(md5str), digest);
     } while (digest[0] != 0 || digest[1] != 0 || digest[2] != 0);
 

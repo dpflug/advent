@@ -1,5 +1,5 @@
 (defun day1-1 (f)
-  (let ((in (open "f" :if-does-not-exist nil))
+  (let ((in (open f :if-does-not-exist nil))
                        (frequency 0))
                    (when in
                      (loop for line = (read-line in nil)
