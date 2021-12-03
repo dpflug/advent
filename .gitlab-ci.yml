@@ -1,11 +1,5 @@
-variables:
-  QUICKLISP_ADD_TO_INIT_FILE: "true"
-
 image:
-  name: clfoundation/sbcl:latest
-
-before_script:
-  - install-quicklisp
+  name: daym/guix-on-docker
 
 build-job:
   stage: build
@@ -15,4 +9,4 @@ build-job:
 test-job2021-1:
   stage: test
   script:
-    - sbcl --load "2021/2021.lisp" --eval "(1a \"2021/1_data.txt\")"
+    - guix environment --ad-hoc sbcl --load "2021/2021.lisp" --eval "(1a \"2021/1_data.txt\")"
