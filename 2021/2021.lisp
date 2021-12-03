@@ -1,9 +1,8 @@
 (in-package :cl-user)
 (defpackage :aoc-2021
-  (:use :cl))
+  (:use :cl)
+  (:import-from :uiop :split-string))
 (in-package :aoc-2021)
-
-(ql:quickload :uiop)
 
 (defun 1a (f)
   (with-open-file (in f)
