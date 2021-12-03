@@ -1,7 +1,11 @@
-# Example ci.yml
+variables:
+  QUICKLISP_ADD_TO_INIT_FILE: "true"
 
 image:
-  name: clfoundation/sbcl:alpine3.13
+  name: clfoundation/sbcl:latest
+
+before_script:
+  - install-quicklisp
 
 build-job:
   stage: build
