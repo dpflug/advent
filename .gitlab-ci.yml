@@ -1,19 +1,19 @@
 # Won't work until my data's included, but do I want to do that?
 
-#variables:
-#  QUICKLISP_ADD_TO_INIT_FILE: "true"
-#
-#image:
-#  name: clfoundation/sbcl:latest
-#
-#before_script:
-#  - install-quicklisp
-#
-#build-job:
-#  stage: build
-#  script:
-#    - echo "Hello, $GITLAB_USER_LOGIN!"
-#
+variables:
+  QUICKLISP_ADD_TO_INIT_FILE: "true"
+
+image:
+  name: clfoundation/sbcl:latest
+
+before_script:
+  - install-quicklisp
+
+build-job:
+  stage: build
+  script:
+    - echo "Hello, $GITLAB_USER_LOGIN!"
+
 #test-job2021-1:
 #  stage: test
 #  script:
