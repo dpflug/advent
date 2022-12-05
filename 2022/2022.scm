@@ -73,6 +73,7 @@
 
 (define (day3-1 input)
   (define (find-match line)
+    ;; Iter over first half, checking second half for occurrence
     (let* ((midpoint (/ (string-length line) 2))
            (half1 (substring line 0 midpoint))
            (half2 (substring line midpoint)))
@@ -84,8 +85,8 @@
             (iter (1+ n))))))
   (define (score-char c)
     (if (char-upper-case? c)
-        (- (char->integer c) 38)
-        (- (char->integer c) 96)))
+        (- (char->integer c) 38)        ; Upper case
+        (- (char->integer c) 96)))      ; Lower
   (define (match-and-score line)
     (score-char (find-match line)))
   (let ((rucksacks (string-split input #\newline)))
@@ -96,6 +97,7 @@
 
 (define (day3-2 input)
   (define (find-badge group)
+    ;; For each char in the first line, check the 2nd and 3rd
     (let iter ((n 0))
       (when (>= n (string-length (car group)))
         (error "Badge not found"))
@@ -117,3 +119,26 @@
           sum
           (reduce (list-tail lines 3)
                   (+ sum (score-char (find-badge (list-head lines 3)))))))))
+
+(define (day4-1 input)
+  (define (check-overlap digits)
+    ;; Find the larger segment, check containment
+    (let* ((first (car digits))
+           (second (cadr digits))
+           (third (caddr digits))
+           (fourth (cadddr digits)))
+      (if (> (- second first)
+             (- fourth third))
+          (and (<= first third)
+               (>= second fourth))
+          (and (<= third first)
+               (>= fourth second)))))
+  ;; This could be done more efficiently, but done is better than polished
+  (define (break-elfpair line)
+    (string-split line (char-set #\, #\-)))
+  (define (parse-broken pair)
+    (map string->number pair))
+  (let* ((lines (string-split input #\newline))
+         (broken-out (map break-elfpair lines))
+         (parsed (map parse-broken broken-out)))
+    (length (filter check-overlap parsed))))
