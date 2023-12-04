@@ -6,3 +6,11 @@
 *.swo
 *~
 \#*\#
+
+# build basura
+.tup
+.session.cookie
+
+# data dross
+*-out.txt
+in.txt
