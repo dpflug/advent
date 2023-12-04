@@ -1,0 +1,3 @@
+: |> curl -b ../../.session.cookie https://adventofcode.com/2023/day/1/input > %o |> in.txt
+: foreach *.scm | in.txt |> ./%f < in.txt > %o |> %B-out.txt
+: foreach *.py | in.txt |> python3 %f < in.txt > %o |> %B-out.txt
