@@ -1,3 +1,5 @@
-: |> curl -b ../../.session.cookie https://adventofcode.com/2023/day/1/input > %o |> in.txt
-: foreach *.scm | in.txt |> ./%f < in.txt > %o |> %B-out.txt
-: foreach *.py | in.txt |> python3 %f < in.txt > %o |> %B-out.txt
+include_rules
+DAY=1
+: |> !getinput |>
+: foreach *.scm |> !guile |>
+: foreach *.py | |> !py|> %B-out.txt

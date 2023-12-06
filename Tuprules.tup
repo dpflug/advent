@@ -1,0 +1,6 @@
+# Generate .gitignore for output files
+.gitignore
+
+!getinput = |> curl -b ../../.session.cookie https://adventofcode.com/$(YEAR)/day/$(DAY)/input > %o |> in.txt
+!guile = | in.txt |> ./%f < in.txt > %o |> %B-out.txt
+!py = | in.txt |> python3 %f < in.txt > %o |> %B-out.txt
